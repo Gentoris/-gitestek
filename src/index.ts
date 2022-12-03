@@ -1,0 +1,51 @@
+import { CelestialBody } from "./CelestialBody";
+import { Planet } from "./Planet";
+
+let nevInput = (document.getElementById('nevInput') as HTMLInputElement);
+let evInput = (document.getElementById('evInput') as HTMLInputElement);
+let meretInput = (document.getElementById('meretInput') as HTMLInputElement);
+let waterInput = (document.getElementById('waterInput') as HTMLInputElement);
+let errorKiir = (document.getElementById('errorKiir') as HTMLElement);
+let CelestialBodyList : CelestialBody[]  = []
+
+function szamol() {
+    document.getElementById('bolygodb')!.textContent = CelestialBodyList.length.toFixed();
+    let avg = 0;
+    for (let bolygo of CelestialBodyList) { 
+        avg += bolygo.age.valueOf()
+    }
+    document.getElementById('atlagEletkor')!.textContent = (avg /  CelestialBodyList.length).toFixed();
+}
+function emptyallFields() {
+    nevInput.value = ""
+    evInput.value = ""
+    meretInput.value = ""
+    waterInput.value = ""
+    errorKiir.innerHTML = " "
+
+}
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('submit')?.addEventListener('click', () => {
+        let regex = new RegExp('[A-Za-z ]{2}');
+
+        if(regex.test(nevInput.value) && parseInt(evInput.value) > 0 && parseInt(meretInput.value) >= 1500 &&
+         (parseInt(waterInput.value) >= 0 && parseInt(waterInput.value) <= 100) ) {
+            CelestialBodyList.push(new Planet(nevInput.value, parseInt(evInput.value), parseInt(meretInput.value), parseInt(waterInput.value)));
+            szamol();
+            emptyallFields();
+        } else {
+            if(!regex.test(nevInput.value)) {
+                errorKiir.innerHTML = "A név csak betüket tartalmazhat és két karakternél többet"
+            }
+            if(!(parseInt(evInput.value) > 0)) {
+                errorKiir.innerHTML = "Az életkor csak pozitív lehet"
+            }
+            if (!(parseInt(meretInput.value) >= 1500)) {
+                errorKiir.innerHTML = "A méret nem lehet 1500-nál kisebb"
+            }
+            if (!(parseInt(waterInput.value) >= 0 && parseInt(waterInput.value) <= 100)) {
+                errorKiir.innerHTML = "A viz felület csak 0-100 között lehet"
+            }
+        }
+    })
+});

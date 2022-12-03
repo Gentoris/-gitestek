@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <title>Égitestek</title>
+</head>
+<body>
+    <div >
+        <p>A bolygok száma: <span id="bolygodb">0</span> db</p>
+    </div> <br>
+    <div>
+        <p>A bolygok átlagéletkora: <span id="atlagEletkor">0</span></p>
+
+    </div> <br>
+    <label for="nevInput">
+        Nev: 
+        <input type="text"name="nevInput" id="nevInput" >
+    </label>
+    <label for="evInput">
+        életkor: 
+        <input type="number"name="evInput" id="evInput" >
+    </label>
+    <label for="meretInput">
+        Méret: 
+        <input type="number"name="meretInput" id="meretInput" min="1500" >
+    </label>
+    <label for="waterInput">
+        VizFelszin: 
+        <input type="number"name="waterInput" id="waterInput" min="0" max="100">
+    </label>
+    <button id="submit">Felvesz</button><br>
+    <p id="errorKiir"></p>
+</body>
+</html>
